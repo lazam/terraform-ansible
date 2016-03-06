@@ -2,7 +2,7 @@ resource "aws_instance" "main" {
     ami = "${lookup(var.ami, var.region.primary)}"
     instance_type = "${var.insttype.utility}"
     tags {
-        Name = "Ansible Server"
+        Name = "Ansible-Server"
     }
 
     key_name = "${var.key_name}"
@@ -24,20 +24,13 @@ resource "aws_instance" "main" {
 
     /* Install and configure Ansible */
 
-    /* provisioner "file" {
-        source = "${var.keyfile}"
-        destination = "/home/ubuntu/.ssh/TerraForm.pem"
-        connection {
-            type = "ssh"
-            user = "ubuntu"
-            keyfile = "${var.keyfile}"
-        }
-    } */
-
     provisioner "remote-exec" {
         inline = [
             "sudo apt-get update",
-            "sudo apt-get install ansible -y"
+            "sudo apt-get install ansible python-pip -y",
+            "sudo pip install boto",
+            "cd /etc/ansible/ ; sudo wget -O ec2.py https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py",
+            "cd /etc/ansible/ ; sudo wget -O ec2.ini https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.ini",
         ]
     } 
 

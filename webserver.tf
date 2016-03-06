@@ -1,9 +1,9 @@
-resource "aws_instance" "client" {
+resource "aws_instance" "webserver" {
 
     ami = "${lookup(var.ami, var.region.primary)}"
     instance_type = "${var.insttype.utility}"
     tags {
-        Name = "Ansible-Client"
+        Name = "Web-Server"
     }
 
     key_name = "${var.key_name}"
@@ -21,13 +21,14 @@ resource "aws_instance" "client" {
     }
 
     /* security group info */
-    security_groups = ["${aws_security_group.ssh_access.name}"]
+    security_groups = ["${aws_security_group.http_access.name}"]
 
-    /* Provisioners */
-    
+    /* Install and configure Ansible */
+
     provisioner "remote-exec" {
-       inline = [
-            "sudo apt-get update"
-       ]
+        inline = [
+            "sudo apt-get update",
+        ]
     }
+
 }
