@@ -1,0 +1,15 @@
+---
+- hosts: tag_Name_Ansible_Client
+  user: ubuntu
+  sudo: yes
+  tasks:
+       - name: Update apt-cache
+         apt: update_cache=yes
+
+       - name: Install apache
+         apt: name=apache2 state=latest
+
+  handlers:
+       -name: restart apache
+       service: name=apache2 state=restarted
+

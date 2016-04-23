@@ -1,0 +1,4 @@
+Host *
+     ForwardAgent yes
+     user ubuntu
+     IdentityFile ~/.ssh/SSHkey
