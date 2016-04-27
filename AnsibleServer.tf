@@ -1,4 +1,4 @@
-resource "aws_instance" "main" {
+resource "aws_instance" "AnsibleServer" {
     ami = "${lookup(var.ami, var.region.primary)}"
     instance_type = "${var.insttype.utility}"
     tags {

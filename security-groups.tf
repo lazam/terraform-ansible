@@ -43,4 +43,3 @@ resource "aws_security_group" "http_access" {
         cidr_blocks = ["0.0.0.0/0"]
    }
 }
-

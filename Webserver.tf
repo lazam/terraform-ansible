@@ -1,9 +1,9 @@
-resource "aws_instance" "client" {
+resource "aws_instance" "Webserver" {
 
     ami = "${lookup(var.ami, var.region.primary)}"
     instance_type = "${var.insttype.utility}"
     tags {
-        Name = "Ansible-Client"
+        Name = "webserver"
     }
 
     key_name = "${var.key_name}"
@@ -21,7 +21,7 @@ resource "aws_instance" "client" {
     }
 
     /* security group info */
-    security_groups = ["${aws_security_group.ssh_access.name}"]
+    security_groups = ["${aws_security_group.http_access.name}"]
 
     /* Provisioners */
     

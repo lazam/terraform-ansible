@@ -1,5 +1,5 @@
 ---
-- hosts: tag_Name_Ansible_Client
+- hosts: tag_Name_Webserver
   user: ubuntu
   sudo: yes
   tasks:
