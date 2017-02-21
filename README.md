@@ -55,7 +55,8 @@ export AWS_SECRET_ACCESS_KEY='abc123'
 ### Ansible with Static Inventory
 Ansible will use the normal static inventory so each hosts need to be declared in /etc/ansible/host.
 Please see configuration below for using static inventory:
-```variable "ansible_inventory" {
+```
+variable "ansible_inventory" {
   description = "1 if static inventory is true"
 
   type = "map"
