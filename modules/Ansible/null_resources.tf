@@ -19,8 +19,7 @@ resource "null_resource" "dynamic_discovery" {
     inline = [
       "sleep 30",
       "chmod +x /home/ubuntu/dynamic_inventory.sh",
-      "sudo bash -x /home/ubuntu/dynamic_inventory.sh"
-      "mkdir /etc/ansible/{playbooks,roles}"
+      "sudo bash -x /home/ubuntu/dynamic_inventory.sh",
     ]
   }
 }
@@ -46,8 +45,7 @@ resource "null_resource" "static_inventory" {
     inline = [
       "sleep 30",
       "chmod +x /home/ubuntu/static_inventory",
-      "sudo bash -x /home/ubuntu/static_inventory"
-      "mkdir /etc/ansible/{playbooks,hosts,roles}"
+      "sudo bash -x /home/ubuntu/static_inventory",
     ]
   }
 

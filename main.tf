@@ -33,3 +33,21 @@ module "Ansible" {
   key_path          = "${var.key_path}"
 
 }
+
+module "s3-bucket" {
+  source = "./modules/S3"
+
+  name   = "TFstate"
+
+  vpc_region  = "${var.vpc_region}"
+  s3 = "${var.s3}"
+}
+
+data "terraform_remote_state" "tf-state" {
+    backend = "s3"
+    config {
+        bucket = "${var.s3["bucket_name"]}"
+        key = "terraform.tfstate"
+        region = "us-east-1"
+    }
+}
